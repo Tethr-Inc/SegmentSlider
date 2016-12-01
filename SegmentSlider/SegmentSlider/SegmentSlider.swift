@@ -25,16 +25,16 @@ extension UIColor {
 	}
 }
 
-@objc protocol SliderDelegate: class {
+@objc public protocol SliderDelegate: class {
 	func segmentSlider(_ segmentSlider: SegmentSlider, segmentDidChangeToIndex index: Int)
 	@objc optional func numberOfPointsOnSlider(_ segmentSlider: SegmentSlider) -> Int
 }
 
-class SegmentSlider: UIView {
-	weak var delegate: SliderDelegate?
+open class SegmentSlider: UIView {
+	public weak var delegate: SliderDelegate?
 	
 	// Data Source
-	@IBInspectable var numberOfPoints: Int = 5 {
+	@IBInspectable public var numberOfPoints: Int = 5 {
 		didSet {
 			update()
 		}
@@ -43,7 +43,7 @@ class SegmentSlider: UIView {
 	fileprivate var _count: Int {
 		return delegate?.numberOfPointsOnSlider?(self) ?? numberOfPoints
 	}
-	var currentIndex = 0 {
+	public var currentIndex = 0 {
 		didSet {
 			if currentIndex != oldValue {
 				delegate?.segmentSlider(self, segmentDidChangeToIndex: currentIndex)
@@ -51,32 +51,45 @@ class SegmentSlider: UIView {
 		}
 	}
 
-	var minimumTrackTintColor: UIColor? {
+	public var minimumTrackTintColor: UIColor? {
 		didSet {
 			trackingLayer.backgroundColor = minimumTrackTintColor?.cgColor
 		}
 	}
-	var maximumTrackTintColor: UIColor? {
+	public var maximumTrackTintColor: UIColor? {
 		didSet {
 			backgroundLayer.backgroundColor = maximumTrackTintColor?.cgColor
 		}
 	}
 	
-	var trackHeight: CGFloat = 2
-	var thumbRadius: CGFloat = 14
-	var circleRadius: CGFloat = 4
-
-	let backgroundLayer = CALayer()
-	let maskLayer = CAShapeLayer()
-	let trackingLayer = CALayer()
-
-	let thumbView = UIView()
+	public var trackHeight: CGFloat = 2 {
+		didSet {
+			update()
+		}
+	}
+	
+	public var thumbRadius: CGFloat = 14 {
+		didSet {
+			update()
+		}
+	}
+	
+	public var circleRadius: CGFloat = 4 {
+		didSet {
+			update()
+		}
+	}
+	
+	fileprivate let backgroundLayer = CALayer()
+	fileprivate let maskLayer = CAShapeLayer()
+	fileprivate let trackingLayer = CALayer()
+	fileprivate let thumbView = UIView()
 
 	
 
 	fileprivate var startPoint: CGPoint?
 	
-	override func awakeFromNib() {
+	override open func awakeFromNib() {
 		super.awakeFromNib()
 		
 		configure()
@@ -89,7 +102,7 @@ class SegmentSlider: UIView {
 		addGestureRecognizer(tapGesture)
 	}
 	
-	func handlePan(_ sender: UIPanGestureRecognizer) {
+	@objc private func handlePan(_ sender: UIPanGestureRecognizer) {
 		let translation = sender.translation(in: self)
 
 		let minCenter = centerForIndex(0).x
@@ -114,7 +127,7 @@ class SegmentSlider: UIView {
 		}
 	}
 	
-	func handleTap(_ sender: UITapGestureRecognizer) {
+	@objc private func handleTap(_ sender: UITapGestureRecognizer) {
 		let point = sender.location(in: self)
 		let index = nearestIndexToPoint(point.x)
 		let center = centerForIndex(index).x
@@ -124,7 +137,7 @@ class SegmentSlider: UIView {
 		}
 	}
 	
-	func updatePosition(_ center: CGFloat, animated: Bool, completion: (() -> ())? = nil) {
+	private func updatePosition(_ center: CGFloat, animated: Bool, completion: (() -> ())? = nil) {
 
 		var animations: (() -> ())?
 		
@@ -149,12 +162,12 @@ class SegmentSlider: UIView {
 		}
 	}
 
-	override func layoutSubviews() {
+	override open func layoutSubviews() {
 		super.layoutSubviews()
 		update()
 	}
 	
-	override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+	override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
 		let frame = thumbView.frame.insetBy(dx: -40, dy: -20)
 		return frame.contains(point) ? thumbView : self
 	}
@@ -165,7 +178,7 @@ class SegmentSlider: UIView {
 // MARK: - Configuration
 extension SegmentSlider {
 	// Background
-	func configure() {
+	fileprivate func configure() {
 		
 		clipsToBounds = false
 		layer.masksToBounds = false
@@ -183,7 +196,6 @@ extension SegmentSlider {
 
 		// Mask
 		backgroundLayer.mask = maskLayer
-
 		
 		// Thumb
 		thumbView.backgroundColor = .white
@@ -195,8 +207,6 @@ extension SegmentSlider {
 		thumbView.layer.shadowOpacity = 0.35
 		thumbView.layer.shadowRadius = 2
 		
-		
-		
 		addSubview(thumbView)
 	}
 }
@@ -205,7 +215,7 @@ extension SegmentSlider {
 // MARK: - Updates
 extension SegmentSlider {
 	
-	func update() {
+	fileprivate func update() {
 		
 		// Thumb
 		let minCenter = centerForIndex(0)
