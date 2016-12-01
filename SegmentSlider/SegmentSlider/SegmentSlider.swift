@@ -1,5 +1,5 @@
 //
-//  UISegmentSlider.swift
+//  SegmentSlider.swift
 //  Tethr
 //
 //  Created by Ian MacCallum on 7/8/16.
@@ -25,13 +25,13 @@ extension UIColor {
 	}
 }
 
-@objc protocol UISliderDelegate: class {
-	func segmentSlider(_ segmentSlider: UISegmentSlider, segmentDidChangeToIndex index: Int)
-	@objc optional func numberOfPointsOnSlider(_ segmentSlider: UISegmentSlider) -> Int
+@objc protocol SliderDelegate: class {
+	func segmentSlider(_ segmentSlider: SegmentSlider, segmentDidChangeToIndex index: Int)
+	@objc optional func numberOfPointsOnSlider(_ segmentSlider: SegmentSlider) -> Int
 }
 
-class UISegmentSlider: UIView {
-	weak var delegate: UISliderDelegate?
+class SegmentSlider: UIView {
+	weak var delegate: SliderDelegate?
 	
 	// Data Source
 	@IBInspectable var numberOfPoints: Int = 5 {
@@ -163,7 +163,7 @@ class UISegmentSlider: UIView {
 
 
 // MARK: - Configuration
-extension UISegmentSlider {
+extension SegmentSlider {
 	// Background
 	func configure() {
 		
@@ -203,7 +203,7 @@ extension UISegmentSlider {
 
 
 // MARK: - Updates
-extension UISegmentSlider {
+extension SegmentSlider {
 	
 	func update() {
 		
@@ -232,7 +232,7 @@ extension UISegmentSlider {
 
 
 // MARK: - Helpers
-extension UISegmentSlider {
+extension SegmentSlider {
 	
 	fileprivate func percentForIndex(_ index: Int) -> CGFloat {
 		return CGFloat(index) / CGFloat((_count - 1))

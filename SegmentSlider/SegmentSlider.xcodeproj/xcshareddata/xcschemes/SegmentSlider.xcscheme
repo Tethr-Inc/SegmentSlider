@@ -61,16 +61,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8244C5B81DEFDBF900C25BC8"
-            BuildableName = "SegmentSliderDemo.app"
-            BlueprintName = "SegmentSliderDemo"
-            ReferencedContainer = "container:SegmentSlider.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
