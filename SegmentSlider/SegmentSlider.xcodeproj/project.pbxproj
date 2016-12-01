@@ -580,6 +580,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SegmentSlider/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tethr.SegmentSlider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -601,6 +602,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SegmentSlider/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tethr.SegmentSlider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -756,6 +758,7 @@
 				8244C5E01DEFDBFA00C25BC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8244C5E11DEFDBFA00C25BC8 /* Build configuration list for PBXNativeTarget "SegmentSliderDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -764,6 +767,7 @@
 				8244C5E31DEFDBFA00C25BC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8244C5E41DEFDBFA00C25BC8 /* Build configuration list for PBXNativeTarget "SegmentSliderDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -772,6 +776,7 @@
 				8244C5E61DEFDBFA00C25BC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
